@@ -8,6 +8,14 @@ const colors = {
   white: "#FFFFFF",
 };
 
+export const SubtitleH2 = styled.h2`
+  color: red;
+`;
+
+export const SubtitleH3 = styled.h3`
+  color: blue;
+`;
+
 export const Container = styled.div`
   width: 100%;
   margin: 0 auto;

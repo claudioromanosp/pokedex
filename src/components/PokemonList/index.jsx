@@ -1,3 +1,4 @@
+import {SubtitleH2,SubtitleH3} from "../../components/Styles";
 const PokemonList = ({ name, national, types, image }) => {
   const mapTypeToClass = (type) => {
     switch (type) {
@@ -48,8 +49,9 @@ const PokemonList = ({ name, national, types, image }) => {
 
   return (
     <div className="pokemon">
-      <h2>{name}</h2>
-      <h3>{national}</h3>
+      <img src={image} alt={name} />
+      <SubtitleH3>{national}</SubtitleH3>
+      <SubtitleH2>{name}</SubtitleH2>
       <div className="types">
         {types.map((type, index) => (
           <span key={index} className={`type type-${mapTypeToClass(type)}`}>
@@ -57,7 +59,6 @@ const PokemonList = ({ name, national, types, image }) => {
           </span>
         ))}
       </div>
-      <img src={image} alt={name} />
     </div>
   );
 };
