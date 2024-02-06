@@ -8,6 +8,8 @@ const Home = () => {
   const [pokemons, setPokemons] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [sortOrder, setSortOrder] = useState("name");
+  const [filterType, setFilterType] = useState(null);
+  const [availableTypes, setAvailableTypes] = useState([]);
 
   useEffect(() => {
     getPokemon();
@@ -17,6 +19,10 @@ const Home = () => {
     try {
       const response = await api.get(`pokemons.json`);
       setPokemons(response.data.results);
+      // Extrair tipos únicos de todos os Pokémon e definir como opções de filtro
+      const types = response.data.results.flatMap(pokemon => pokemon.type);
+      const uniqueTypes = [...new Set(types)];
+      setAvailableTypes(uniqueTypes);
     } catch (error) {
       console.error(error);
     }
@@ -30,6 +36,12 @@ const Home = () => {
     setSortOrder(event.target.value);
   };
 
+  const handleFilterChange = (type) => {
+    setFilterType(type);
+  };
+
+
+  
   const sortedPokemons = [...pokemons].sort((a, b) => {
     if (sortOrder === "name") {
       return a.name.localeCompare(b.name);
@@ -39,15 +51,17 @@ const Home = () => {
     return 0;
   });
 
-  const filteredPokemons = sortedPokemons.filter(
-    (pokemon) =>
+  const filteredPokemons = sortedPokemons.filter((pokemon) => {
+    const matchesSearchTerm =
       pokemon.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      pokemon.national_number.toString().includes(searchTerm)
-  );
+      pokemon.national_number.toString().includes(searchTerm);
+    const matchesFilter = !filterType || pokemon.type.includes(filterType);
+    return matchesSearchTerm && matchesFilter;
+  });
 
   const options = [
-    { value: 'name', label: 'Nome' },
-    { value: 'national_number', label: 'Menor número primeiro' }
+    { value: "name", label: "Nome" },
+    { value: "national_number", label: "Menor número primeiro" },
   ];
 
   return (
@@ -55,7 +69,7 @@ const Home = () => {
       <div>
         <Input
           type="text"
-          placeholder="Search by name or national number"
+          placeholder="Pesquisar por nome ou número nacional"
           value={searchTerm}
           onChange={handleSearchChange}
         />
@@ -66,8 +80,16 @@ const Home = () => {
           value={sortOrder}
           options={options}
           onChange={handleSortChange}
-          className="seu-classe-css-aqui"
+          className="select"
         />
+      </div>
+      <div>
+        {availableTypes.map((type, index) => (
+          <button key={index} onClick={() => handleFilterChange(type)}>
+            {type}
+          </button>
+        ))}
+        <button onClick={() => handleFilterChange(null)}>Limpar filtro</button>
       </div>
       <ul>
         {filteredPokemons.map((pokemon, index) => (
