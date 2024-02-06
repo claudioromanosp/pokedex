@@ -1,5 +1,13 @@
 import styled from "styled-components";
 
+const colors = {
+  font: "#333333",
+  dark_gray:	"#828282",
+  light_gray:	"#F2F2F2",
+  red: "#E2350D",
+  white: "#FFFFFF",
+};
+
 export const Container = styled.div`
   width: 100%;
   margin: 0 auto;
@@ -8,8 +16,11 @@ export const Container = styled.div`
 
 export const ButtonTag = styled.div`
   display: inline-block;
-  padding: 5px;
+  padding: 5px 20px;
   margin: 5px;
+  border-radius: 20px;
+  color: ${(props) => colors.red};
+  border: 1px solid ${(props) => colors.red};
 `;
 
 export const Grid = styled.div`
