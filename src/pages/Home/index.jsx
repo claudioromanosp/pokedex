@@ -40,8 +40,6 @@ const Home = () => {
     setFilterType(type);
   };
 
-
-  
   const sortedPokemons = [...pokemons].sort((a, b) => {
     if (sortOrder === "name") {
       return a.name.localeCompare(b.name);
@@ -97,7 +95,7 @@ const Home = () => {
             <PokemonList
               name={pokemon.name}
               national={pokemon.national_number}
-              type={pokemon.type}
+              types={pokemon.type}
               image={pokemon.sprites.normal}
             />
           </li>
