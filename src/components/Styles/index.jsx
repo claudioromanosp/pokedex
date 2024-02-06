@@ -8,6 +8,13 @@ const colors = {
   white: "#FFFFFF",
 };
 
+
+
+export const CardImage = styled.div`
+  width: 100%;
+  background-color: ${(props) => colors.light_gray};
+`;
+
 export const SubtitleH2 = styled.h2`
   color: red;
 `;
@@ -33,9 +40,13 @@ export const ButtonTag = styled.div`
 `;
 
 export const Grid = styled.div`
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  grid-gap: 5px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+
   @media(min-width: 600px){
     grid-template-columns: repeat(2, 1fr);
   }

@@ -1,6 +1,9 @@
     body{
         font-family: 'Titillium Web', sans-serif;
     }
+    .img-responsive{
+        width: 100%;
+    }
     .type{
         padding: 5px 20px;
         margin: 5px;
