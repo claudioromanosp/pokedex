@@ -52,7 +52,7 @@ const PokemonList = ({ name, national, types, image }) => {
       <h3>{national}</h3>
       <div className="types">
         {types.map((type, index) => (
-          <span key={index} className={`type-${mapTypeToClass(type)}`}>
+          <span key={index} className={`type type-${mapTypeToClass(type)}`}>
             {type}
           </span>
         ))}

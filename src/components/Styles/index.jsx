@@ -20,6 +20,7 @@ export const ButtonTag = styled.div`
   margin: 5px;
   border-radius: 20px;
   color: ${(props) => colors.red};
+  cursor: pointer;
   border: 1px solid ${(props) => colors.red};
 `;
 
