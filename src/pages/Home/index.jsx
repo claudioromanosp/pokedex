@@ -17,6 +17,7 @@ const Home = () => {
   const [availableTypes, setAvailableTypes] = useState([]);
   const [favorites, setFavorites] = useState(JSON.parse(localStorage.getItem('favorites')) || []);
   const [heart, setHeart] = useState(Heart);
+  const [filteredTag, setFilteredTag] = useState({});
 
   useEffect(() => {
     getPokemon();
@@ -45,7 +46,19 @@ const Home = () => {
   };
 
   const handleFilterChange = (type) => {
-    setFilterType(type);
+    if (type === filterType) {
+      setFilterType(null);
+      setFilteredTag(prevState => ({
+        ...prevState,
+        [type]: false
+      }));
+    } else {
+      setFilterType(type);
+      setFilteredTag(prevState => ({
+        ...prevState,
+        [type]: true
+      }));
+    }
   };
 
   const sortedPokemons = [...pokemons].sort((a, b) => {
@@ -112,11 +125,14 @@ const Home = () => {
       <Container>
         <Nav>
           {availableTypes.map((type, index) => (
-            <ButtonTag key={index} onClick={() => handleFilterChange(type)}>
+            <ButtonTag 
+              key={index} 
+              onClick={() => handleFilterChange(type)}
+              className={filteredTag[type] ? 'filtered-tag' : ''}
+            >
               {type}
             </ButtonTag>
           ))}
-          <ButtonTag onClick={() => handleFilterChange(null)}>Limpar filtro</ButtonTag>
         </Nav>
 
         <Grid>

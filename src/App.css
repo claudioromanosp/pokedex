@@ -90,4 +90,12 @@
 .favorite {
   display: block;
 }
+.filtered-tag{
+    color: #fff !important;
+    background-color:#E2350D
+}
+
+.filtered-tag:after{
+    content: "X";
+}
 	
