@@ -33,14 +33,15 @@ const Home = () => {
       setLoading(true);
       const response = await api.get(`pokemons.json`);
       setPokemons(response.data.results);
+      setLoading(false);
       // Extrair tipos únicos de todos os Pokémon e definir como opções de filtro
       const types = response.data.results.flatMap(pokemon => pokemon.type);
       const uniqueTypes = [...new Set(types)];
       setAvailableTypes(uniqueTypes);
-      setLoading(false);
     } catch (error) {
       console.error(error);
     }
+
   };
 
   const handleSearchChange = (event) => {
