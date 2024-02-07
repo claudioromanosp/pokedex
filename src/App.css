@@ -78,4 +78,16 @@
         
     .type-fighting{
         background-color:#C03228
-    }	
+    }
+.pokemon-heart {
+  display: none;
+}
+
+.pokemon-container:hover .pokemon-heart {
+  display: block;
+}
+
+.favorite {
+  display: block;
+}
+	

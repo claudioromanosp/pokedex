@@ -3,7 +3,11 @@ import api from "../../services/api";
 import PokemonList from "../../components/PokemonList";
 import Input from "../../components/Input";
 import Select from "../../components/Select";
-import {Container, Grid, GridItem, Nav, ButtonTag} from "../../components/Styles";
+import Image from "../../components/Image";
+import Button from "../../components/Button";
+import Heart from "../../assets/images/empty-heart.png";
+import HeartFavorite from "../../assets/images/red-heart.png";
+import { Container, Grid, GridItem, Nav, ButtonTag } from "../../components/Styles";
 
 const Home = () => {
   const [pokemons, setPokemons] = useState([]);
@@ -11,6 +15,8 @@ const Home = () => {
   const [sortOrder, setSortOrder] = useState("name");
   const [filterType, setFilterType] = useState(null);
   const [availableTypes, setAvailableTypes] = useState([]);
+  const [favorites, setFavorites] = useState(JSON.parse(localStorage.getItem('favorites')) || []);
+  const [heart, setHeart] = useState(Heart);
 
   useEffect(() => {
     getPokemon();
@@ -20,6 +26,7 @@ const Home = () => {
     try {
       const response = await api.get(`pokemons.json`);
       setPokemons(response.data.results);
+      console.log(response.data.results)
       // Extrair tipos únicos de todos os Pokémon e definir como opções de filtro
       const types = response.data.results.flatMap(pokemon => pokemon.type);
       const uniqueTypes = [...new Set(types)];
@@ -63,10 +70,28 @@ const Home = () => {
     { value: "national_number", label: "Menor número primeiro" },
   ];
 
+  const onHeartClick = (pokemonName) => {
+    // Verifica se o Pokémon já está nos favoritos
+    const isFavorite = favorites.includes(pokemonName);
+
+    // Se já estiver nos favoritos, remove
+    if (isFavorite) {
+      const updatedFavorites = favorites.filter(name => name !== pokemonName);
+      localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+      setFavorites(updatedFavorites);
+      setHeart(Heart);
+    } else {
+      // Senão, adiciona aos favoritos
+      const updatedFavorites = [...favorites, pokemonName];
+      localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+      setFavorites(updatedFavorites);
+      setHeart(HeartFavorite);
+    }
+  };
+
   return (
     <div>
       <div>
-        
         <Input
           type="text"
           placeholder="Pesquisar por nome ou número nacional"
@@ -87,24 +112,28 @@ const Home = () => {
       <Container>
         <Nav>
           {availableTypes.map((type, index) => (
-          <ButtonTag key={index} onClick={() => handleFilterChange(type)}>
-            {type}
-          </ButtonTag>
-        ))}
-        <ButtonTag onClick={() => handleFilterChange(null)}>Limpar filtro</ButtonTag>
+            <ButtonTag key={index} onClick={() => handleFilterChange(type)}>
+              {type}
+            </ButtonTag>
+          ))}
+          <ButtonTag onClick={() => handleFilterChange(null)}>Limpar filtro</ButtonTag>
         </Nav>
 
         <Grid>
-        {filteredPokemons.map((pokemon, index) => (
-          <GridItem key={index}>
-            <PokemonList
-              name={pokemon.name}
-              national={pokemon.national_number}
-              types={pokemon.type}
-              image={pokemon.sprites.normal}
-            />
-          </GridItem>
-        ))}
+          {filteredPokemons.map((pokemon, index) => (
+            <GridItem key={index} className="pokemon-container">
+              <PokemonList
+                name={pokemon.name}
+                national={pokemon.national_number}
+                types={pokemon.type}
+                image={pokemon.sprites.large}
+              />
+              <Button className={`pokemon-heart ${favorites.includes(pokemon.name) ? "favorite" : ""}`}
+                onClick={() => onHeartClick(pokemon.name)}>
+                <Image src={favorites.includes(pokemon.name) ? HeartFavorite : Heart} />
+              </Button>
+            </GridItem>
+          ))}
         </Grid>
       </Container>
       
