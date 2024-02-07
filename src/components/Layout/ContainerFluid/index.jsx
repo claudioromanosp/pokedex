@@ -1,9 +1,15 @@
-import { ContainerFluidS} from "../../Styles";
+import styled from "styled-components";
+import { breakpoint } from "../Variables";
+
+export const ContainerFluidS = styled.div`
+  width: 100%;
+`;
+
 function ContainerFluid({ className, children }) {
   return (
-    <div className="container-fluid">
+    <ContainerFluidS className={`container-fluid ${className}`}>
       {children}
-    </div>
+    </ContainerFluidS>
   );
 }
 
