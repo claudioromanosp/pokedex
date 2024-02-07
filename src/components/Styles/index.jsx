@@ -8,7 +8,24 @@ const colors = {
   white: "#FFFFFF",
 };
 
-
+export const LoadingGif = styled.div`
+    width: 200px;
+    height: auto;
+    left: 50%;
+    margin-top: -100px;
+    top: 50%;
+    margin-left: -100px;
+    position: absolute;
+`;
+export const ModalDiv = styled.div`
+  position: fixed;
+  background-color: ${(props) => colors.red};
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 100%;
+  z-index: 9999;
+`;
 
 export const CardImage = styled.div`
   width: 100%;
