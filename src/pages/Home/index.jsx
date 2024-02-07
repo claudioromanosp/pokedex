@@ -5,6 +5,7 @@ import Input from "../../components/Input";
 import Select from "../../components/Select";
 import Image from "../../components/Image";
 import Button from "../../components/Button";
+import Loading from "../../components/Loading";
 import Heart from "../../assets/images/empty-heart.png";
 import HeartFavorite from "../../assets/images/red-heart.png";
 import { Container, Grid, GridItem, Nav, ButtonTag } from "../../components/Styles";
@@ -21,19 +22,22 @@ const Home = () => {
   const [heart, setHeart] = useState(Heart);
   const [filteredTag, setFilteredTag] = useState({});
   const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     getPokemon();
   }, []);
-
+  
   const getPokemon = async () => {
     try {
+      setLoading(true);
       const response = await api.get(`pokemons.json`);
       setPokemons(response.data.results);
       // Extrair tipos únicos de todos os Pokémon e definir como opções de filtro
       const types = response.data.results.flatMap(pokemon => pokemon.type);
       const uniqueTypes = [...new Set(types)];
       setAvailableTypes(uniqueTypes);
+      setLoading(false);
     } catch (error) {
       console.error(error);
     }
@@ -114,6 +118,7 @@ const Home = () => {
 
   return (
     <div>
+      {loading && <Loading />}
       <div>
         <Input
           type="text"
