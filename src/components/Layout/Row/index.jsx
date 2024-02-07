@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { breakpoint } from "../Breakpoint";
+import { breakpoint } from "../Variables";
 
 export const RowMain = styled.div`
   width: 100%;

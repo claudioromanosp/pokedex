@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { breakpoint } from "../Breakpoint";
+import { breakpoint } from "../Variables";
 
 export const Column = styled.div`
   width: 100%;
