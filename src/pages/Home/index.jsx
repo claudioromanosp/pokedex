@@ -9,8 +9,7 @@ import Heart from "../../assets/images/empty-heart.png";
 import HeartFavorite from "../../assets/images/red-heart.png";
 import { Container, Grid, GridItem, Nav, ButtonTag } from "../../components/Styles";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
-
+import { faHeart, faToggleOn, faToggleOff } from '@fortawesome/free-solid-svg-icons';
 
 const Home = () => {
   const [pokemons, setPokemons] = useState([]);
@@ -21,6 +20,7 @@ const Home = () => {
   const [favorites, setFavorites] = useState(JSON.parse(localStorage.getItem('favorites')) || []);
   const [heart, setHeart] = useState(Heart);
   const [filteredTag, setFilteredTag] = useState({});
+  const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
 
   useEffect(() => {
     getPokemon();
@@ -30,7 +30,6 @@ const Home = () => {
     try {
       const response = await api.get(`pokemons.json`);
       setPokemons(response.data.results);
-      console.log(response.data.results)
       // Extrair tipos únicos de todos os Pokémon e definir como opções de filtro
       const types = response.data.results.flatMap(pokemon => pokemon.type);
       const uniqueTypes = [...new Set(types)];
@@ -64,6 +63,14 @@ const Home = () => {
     }
   };
 
+  const handleShowFavorites = () => {
+    setShowFavoritesOnly(true);
+  };
+
+  const handleClearFavoritesFilter = () => {
+    setShowFavoritesOnly(false);
+  };
+
   const sortedPokemons = [...pokemons].sort((a, b) => {
     if (sortOrder === "name") {
       return a.name.localeCompare(b.name);
@@ -78,7 +85,7 @@ const Home = () => {
       pokemon.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       pokemon.national_number.toString().includes(searchTerm);
     const matchesFilter = !filterType || pokemon.type.includes(filterType);
-    return matchesSearchTerm && matchesFilter;
+    return matchesSearchTerm && matchesFilter && (!showFavoritesOnly || favorites.includes(pokemon.name));
   });
 
   const options = [
@@ -107,8 +114,6 @@ const Home = () => {
 
   return (
     <div>
-      <h2>icones</h2>
-      <FontAwesomeIcon icon="fa-light fa-heart" />
       <div>
         <Input
           type="text"
@@ -129,6 +134,23 @@ const Home = () => {
 
       <Container>
         <Nav>
+          {showFavoritesOnly ?
+             <FontAwesomeIcon 
+            icon={faToggleOn} 
+            style={{ "color": "#E2350D", "fa-secondary-color": "#E2350D" }}
+            size="2x" 
+            onClick={handleClearFavoritesFilter} 
+            />
+            :
+            <FontAwesomeIcon 
+              icon={faToggleOff} 
+              style={{ "color": "#828282", "fa-secondary-color": "#828282" }}  
+              size="2x" 
+              onClick={handleShowFavorites} 
+            />
+       
+          }
+         
           {availableTypes.map((type, index) => (
             <ButtonTag 
               key={index} 
@@ -149,16 +171,16 @@ const Home = () => {
                 types={pokemon.type}
                 image={pokemon.sprites.large}
               />
-              <Button className={`pokemon-heart ${favorites.includes(pokemon.name) ? "favorite" : ""}`}
-                onClick={() => onHeartClick(pokemon.name)}>
+              <Button 
+                className={`pokemon-heart ${favorites.includes(pokemon.name) ? "favorite" : ""}`}
+                onClick={() => onHeartClick(pokemon.name)}
+              >
                 <FontAwesomeIcon icon={faHeart} src={favorites.includes(pokemon.name) ? HeartFavorite : Heart} size="2x" />
-                
               </Button>
             </GridItem>
           ))}
         </Grid>
       </Container>
-      
     </div>
   );
 };
