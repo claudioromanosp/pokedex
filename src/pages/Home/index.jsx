@@ -8,6 +8,9 @@ import Button from "../../components/Button";
 import Heart from "../../assets/images/empty-heart.png";
 import HeartFavorite from "../../assets/images/red-heart.png";
 import { Container, Grid, GridItem, Nav, ButtonTag } from "../../components/Styles";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
+
 
 const Home = () => {
   const [pokemons, setPokemons] = useState([]);
@@ -104,6 +107,8 @@ const Home = () => {
 
   return (
     <div>
+      <h2>icones</h2>
+      <FontAwesomeIcon icon="fa-light fa-heart" />
       <div>
         <Input
           type="text"
@@ -146,7 +151,8 @@ const Home = () => {
               />
               <Button className={`pokemon-heart ${favorites.includes(pokemon.name) ? "favorite" : ""}`}
                 onClick={() => onHeartClick(pokemon.name)}>
-                <Image src={favorites.includes(pokemon.name) ? HeartFavorite : Heart} />
+                <FontAwesomeIcon icon={faHeart} src={favorites.includes(pokemon.name) ? HeartFavorite : Heart} size="2x" />
+                
               </Button>
             </GridItem>
           ))}

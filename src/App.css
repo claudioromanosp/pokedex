@@ -81,20 +81,25 @@
     }
 .pokemon-heart {
   display: none;
+  background-color: transparent;
+  border: none;
 }
 
 .pokemon-container:hover .pokemon-heart {
   display: block;
 }
 
-.favorite {
+.pokemon-heart.favorite {
   display: block;
+}
+
+.pokemon-heart.favorite svg.svg-inline--fa.fa-heart{
+    color: #E2350D;
 }
 .filtered-tag{
     color: #fff !important;
-    background-color:#E2350D
+    background-color:#E2350D;
 }
-
 .filtered-tag:after{
     content: "X";
 }
