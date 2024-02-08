@@ -16,9 +16,9 @@ export const Column = styled.div`
   }
 `;
 
-function Col({ children }) {
+function Col({ children, className }) {
   return (
-    <Column className="col col-sm col-md col-lg col-xlg">
+    <Column className={`col col-sm col-md col-lg col-xlg ${className}`}>
       {children}
     </Column>
   );
