@@ -22,17 +22,25 @@ export const ModalDiv = styled.div`
 `;
 
 export const CardImage = styled.div`
-  width: 100%;
-  height: auto;
+   display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+  margin-bottom: 10px;
   background-color: ${(props) => colors.light_gray};
 `;
 
 export const SubtitleH2 = styled.h2`
-  color: red;
+  font-weight: 600;
+  font-size: 20px;
+  margin-bottom: 15px;
+  color: ${(props) => colors.font};
 `;
 
 export const SubtitleH3 = styled.h3`
-  color: blue;
+  font-weight: 300;
+  color: ${(props) => colors.font};
+  font-size: 16px;
 `;
 
 export const ButtonTag = styled.div`

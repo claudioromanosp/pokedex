@@ -6,7 +6,7 @@ import Button from "../../components/Button";
 import Loading from "../../components/Loading";
 import Heart from "../../assets/images/empty-heart.png";
 import HeartFavorite from "../../assets/images/red-heart.png";
-import {  ButtonTag, SearchInput, SelectInput } from "../../components/Styles";
+import {  ButtonTag, SearchInput, SubtitleH3 } from "../../components/Styles";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faToggleOn, faToggleOff,faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import ContainerFluid from "../../components/Layout/ContainerFluid";
@@ -59,23 +59,30 @@ const Home = () => {
   };
 
   const handleFilterChange = (type) => {
+    setLoading(true);
     if (type === filterType) {
+      console.log('2');
       setFilterType(null);
+      setLoading(true);
       setFilteredTag(prevState => ({
         ...prevState,
         [type]: false
       }));
     } else {
+      setLoading(true);
       setFilterType(type);
       setFilteredTag(prevState => ({
         ...prevState,
         [type]: true
       }));
     }
+    setLoading(false);
   };
 
   const handleShowFavorites = () => {
+    setLoading(true);
     setShowFavoritesOnly(true);
+    setLoading(false);
   };
 
   const handleClearFavoritesFilter = () => {
@@ -144,7 +151,7 @@ const Home = () => {
             </Col>
               <Col className="col-50" id="col-right">
                 <div className="select-filter">
-                  <label>Ordenar por: </label>
+                  <SubtitleH3>Ordenar por </SubtitleH3>
                   <Select
                     id="sortOrder"
                     value={sortOrder}
@@ -163,6 +170,8 @@ const Home = () => {
         <Container>
           <Aside  className="aside-left">
             <Row>
+              <section>
+                <SubtitleH3>Filtrar por Tipo</SubtitleH3>
               {availableTypes.map((type, index) => (
                 <ButtonTag 
                   key={index} 
@@ -172,7 +181,9 @@ const Home = () => {
                   {type}
                 </ButtonTag>
               ))}
-              
+              </section>
+              <section>
+                <SubtitleH3>Filtrar Favoritos</SubtitleH3>
               {showFavoritesOnly ?
                 <FontAwesomeIcon 
                 icon={faToggleOn} 
@@ -188,7 +199,7 @@ const Home = () => {
                 onClick={handleShowFavorites} 
                 />
               }
-                
+             </section>
             </Row>
           </Aside>
           <Aside  className="aside-right">
@@ -207,7 +218,7 @@ const Home = () => {
                       name={pokemon.name}
                       national={pokemon.national_number}
                       types={pokemon.type}
-                      image={pokemon.sprites.large}
+                      image={pokemon.sprites.normal}
                     />
                   </div>
               ))}

@@ -1,6 +1,6 @@
 import Image from "../../components/Image";
-
 import { SubtitleH2, SubtitleH3, CardImage } from "../../components/Styles";
+import "./styles.css";
 
 const PokemonList = ({ name, national, types, image }) => {
   const mapTypeToClass = (type) => {
@@ -55,7 +55,7 @@ const PokemonList = ({ name, national, types, image }) => {
       <CardImage>
         <Image src={image} alt={name} className="img-responsive" />
       </CardImage>
-      <SubtitleH3>{national}</SubtitleH3>
+      <SubtitleH3>Nº {national}</SubtitleH3>
       <SubtitleH2>{name}</SubtitleH2>
       <div className="types">
         {types.map((type, index) => (
