@@ -151,7 +151,6 @@ const Home = () => {
             </Col>
               <Col className="col-50" id="col-right">
                 <div className="select-filter">
-                  <SubtitleH3>Ordenar por </SubtitleH3>
                   <label htmlFor="sortOrder">Ordenar por </label>
                   <Select
                     id="sortOrder"

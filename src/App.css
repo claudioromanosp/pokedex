@@ -11,6 +11,9 @@ body{
 .img-responsive{
     width: 100%;
 }
+label{
+    margin-right: 5px;
+}
 
 input:focus,input:focus-visible{
     outline: none;
