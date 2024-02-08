@@ -5,6 +5,7 @@ export const GridS = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
+  justify-content: center;
   @media (min-width: ${(props) => breakpoint.sm}px) {
     grid-template-columns: repeat(3, 1fr);
   }
