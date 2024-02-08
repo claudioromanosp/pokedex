@@ -12,10 +12,19 @@ describe("App component", () => {
     expect(searchInput.value).toBe("charmander");
   });
 
-  test("testando o filtro do select", () => {
+  test("procura por valores no filtro do select", () => {
     const { getByLabelText } = render(<App />);
     const select = getByLabelText("Ordenar por");
     fireEvent.change(select, { target: { value: "national_number" } });
     expect(select.value).toBe("national_number");
+  });
+  test("retorna um nome de pokemon", () => {
+    function filterByType(types, targetType) {
+      return types.filter((type) => type === targetType);
+    }
+    const types = ["Grass", "Poison", "Fire", "Dragon", "Flying"];
+    const targetType = "Fire";
+    const result = filterByType(types, targetType);
+    expect(result).toEqual(["Fire"]);
   });
 });
