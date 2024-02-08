@@ -59,15 +59,15 @@ const Home = () => {
   };
 
   const handleFilterChange = (type) => {
-    setLoading(true);
+
     if (type === filterType) {
-      console.log('2');
-      setFilterType(null);
       setLoading(true);
+      setFilterType(null);
       setFilteredTag(prevState => ({
         ...prevState,
         [type]: false
       }));
+      setLoading(false);
     } else {
       setLoading(true);
       setFilterType(type);
@@ -75,8 +75,9 @@ const Home = () => {
         ...prevState,
         [type]: true
       }));
+      setLoading(false);
     }
-    setLoading(false);
+    //setLoading(false);
   };
 
   const handleShowFavorites = () => {
@@ -86,7 +87,9 @@ const Home = () => {
   };
 
   const handleClearFavoritesFilter = () => {
+    setLoading(true);
     setShowFavoritesOnly(false);
+    setLoading(false);
   };
 
   const sortedPokemons = [...pokemons].sort((a, b) => {
@@ -133,21 +136,21 @@ const Home = () => {
   return (
     <div>
   
-      {loading && <Loading />}
+    {loading && <Loading />}
     <section className="filters">   
       <ContainerFluid>
         <Container>
           <Row>
-              <Col className="col-50" id="col-left">
-                <div className="search">
-                <SearchInput
-                  type="text"
-                  placeholder="Pesquisar por nome ou número nacional"
-                  value={searchTerm}
-                  onChange={handleSearchChange}
-                  />
-                  <FontAwesomeIcon icon={faMagnifyingGlass} />
-                </div>
+            <Col className="col-50" id="col-left">
+              <div className="search">
+              <SearchInput
+                type="text"
+                placeholder="Pesquisar por nome ou número nacional"
+                value={searchTerm}
+                onChange={handleSearchChange}
+                />
+                <FontAwesomeIcon icon={faMagnifyingGlass} />
+              </div>
             </Col>
               <Col className="col-50" id="col-right">
                 <div className="select-filter">
@@ -160,7 +163,7 @@ const Home = () => {
                     className="select"
                     />
                 </div>
-            </Col>
+              </Col>
             </Row>
         </Container>
      </ContainerFluid> 
@@ -172,18 +175,18 @@ const Home = () => {
             <Row>
               <section>
                 <SubtitleH3>Filtrar por Tipo</SubtitleH3>
-              {availableTypes.map((type, index) => (
-                <ButtonTag 
-                  key={index} 
-                  onClick={() => handleFilterChange(type)}
-                  className={filteredTag[type] ? 'filtered-tag' : ''}
-                >
-                  {type}
-                </ButtonTag>
-              ))}
+                {availableTypes.map((type, index) => (
+                  <ButtonTag 
+                    key={index} 
+                    onClick={() => handleFilterChange(type)}
+                    className={filteredTag[type] ? 'filtered-tag' : ''}
+                  >
+                    {type}
+                  </ButtonTag>
+                ))}
               </section>
               <section>
-                <SubtitleH3>Filtrar Favoritos</SubtitleH3>
+              <SubtitleH3>Filtrar Favoritos</SubtitleH3>
               {showFavoritesOnly ?
                 <FontAwesomeIcon 
                 icon={faToggleOn} 
@@ -204,25 +207,25 @@ const Home = () => {
           </Aside>
           <Aside  className="aside-right">
             <Row>
-                <Grid>
-              {filteredPokemons.map((pokemon, index) => (
-                  <div className="pokemon-container" key={index}>
-                    <Button 
-                      className={`pokemon-heart ${favorites.includes(pokemon.name) ? "favorite" : ""}`}
-                      onClick={() => onHeartClick(pokemon.name)}
-                      >
-                      <FontAwesomeIcon icon={faHeart} src={favorites.includes(pokemon.name) ? HeartFavorite : Heart} size="2x" />
-                    </Button>
+              <Grid>
+                {filteredPokemons.map((pokemon, index) => (
+                    <div className="pokemon-container" key={index}>
+                      <Button 
+                        className={`pokemon-heart ${favorites.includes(pokemon.name) ? "favorite" : ""}`}
+                        onClick={() => onHeartClick(pokemon.name)}
+                        >
+                        <FontAwesomeIcon icon={faHeart} src={favorites.includes(pokemon.name) ? HeartFavorite : Heart} size="2x" />
+                      </Button>
 
-                    <PokemonList
-                      name={pokemon.name}
-                      national={pokemon.national_number}
-                      types={pokemon.type}
-                      image={pokemon.sprites.normal}
-                    />
-                  </div>
-              ))}
-                </Grid>
+                      <PokemonList
+                        name={pokemon.name}
+                        national={pokemon.national_number}
+                        types={pokemon.type}
+                        image={pokemon.sprites.normal}
+                      />
+                    </div>
+                ))}
+              </Grid>
             </Row>
           </Aside>
         </Container>
