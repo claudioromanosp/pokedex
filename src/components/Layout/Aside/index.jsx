@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { breakpoint } from "../Variables";
+import "./styles.css";
 
 export const AsideMain = styled.aside`
 `;

@@ -1,6 +1,7 @@
 import Image from "../../components/Image";
 
-  import {SubtitleH2, SubtitleH3,CardImage } from "../../components/Styles";
+import { SubtitleH2, SubtitleH3, CardImage } from "../../components/Styles";
+
 const PokemonList = ({ name, national, types, image }) => {
   const mapTypeToClass = (type) => {
     switch (type) {
@@ -52,7 +53,7 @@ const PokemonList = ({ name, national, types, image }) => {
   return (
     <div className="pokemon">
       <CardImage>
-      <Image src={image} alt={name} className="img-responsive" />
+        <Image src={image} alt={name} className="img-responsive" />
       </CardImage>
       <SubtitleH3>{national}</SubtitleH3>
       <SubtitleH2>{name}</SubtitleH2>

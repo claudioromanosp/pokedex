@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "./styles.css";
 import api from "../../services/api";
 import PokemonList from "../../components/PokemonList";
 import Input from "../../components/Input";
@@ -14,6 +15,10 @@ import ContainerFluid from "../../components/Layout/ContainerFluid";
 import Container from "../../components/Layout/Container";
 import Row from "../../components/Layout/Row";
 import Col from "../../components/Layout/Col";
+import Grid from "../../components/Layout/Grid";
+import Aside from "../../components/Layout/Aside";
+import Logo from "../../components/Logo";
+import Header from "../../components/Header";
 
 
 const Home = () => {
@@ -152,58 +157,76 @@ const Home = () => {
 
      
       <div>
-        <Input
-          type="text"
-          placeholder="Pesquisar por nome ou número nacional"
-          value={searchTerm}
-          onChange={handleSearchChange}
-        />
+        
       </div>
-      <div>
-        <Select
-          id="sortOrder"
-          value={sortOrder}
-          options={options}
-          onChange={handleSortChange}
-          className="select"
-        />
-      </div>
-
       <div>
         
-          {showFavoritesOnly ?
-             <FontAwesomeIcon 
-             icon={faToggleOn} 
-             style={{ "color": "#E2350D", "fa-secondary-color": "#E2350D" }}
-             size="2x" 
-             onClick={handleClearFavoritesFilter} 
-             />
-             :
-             <FontAwesomeIcon 
-             icon={faToggleOff} 
-             style={{ "color": "#828282", "fa-secondary-color": "#828282" }}  
-             size="2x" 
-             onClick={handleShowFavorites} 
-             />
-            }
-            </div>
-         
-          {availableTypes.map((type, index) => (
-            <ButtonTag 
-              key={index} 
-              onClick={() => handleFilterChange(type)}
-              className={filteredTag[type] ? 'filtered-tag' : ''}
-            >
-              {type}
-            </ButtonTag>
-          ))}
-     
+      </div>
 
-        <ContainerFluid>
-          <Container>
+      
+
+      <ContainerFluid>
+        <Container>
+          <Row>
+            <Col>
+              <Input
+                type="text"
+                placeholder="Pesquisar por nome ou número nacional"
+                value={searchTerm}
+                onChange={handleSearchChange}
+              />
+            </Col>
+            <Col></Col>
+            <Col></Col>
+            <Col>
+              <Select
+                id="sortOrder"
+                value={sortOrder}
+                options={options}
+                onChange={handleSortChange}
+                className="select"
+              />
+            </Col>
+            </Row>
+        </Container>
+     </ContainerFluid> 
+      
+      <ContainerFluid>
+        <Container>
+          <Aside  className="aside-left">
+            <Row>
+              {availableTypes.map((type, index) => (
+                <ButtonTag 
+                  key={index} 
+                  onClick={() => handleFilterChange(type)}
+                  className={filteredTag[type] ? 'filtered-tag' : ''}
+                >
+                  {type}
+                </ButtonTag>
+              ))}
+              
+              {showFavoritesOnly ?
+                <FontAwesomeIcon 
+                icon={faToggleOn} 
+                style={{ "color": "#E2350D", "fa-secondary-color": "#E2350D" }}
+                size="2x" 
+                onClick={handleClearFavoritesFilter} 
+                />
+                :
+                <FontAwesomeIcon 
+                icon={faToggleOff} 
+                style={{ "color": "#828282", "fa-secondary-color": "#828282" }}  
+                size="2x" 
+                onClick={handleShowFavorites} 
+                />
+              }
+                
+            </Row>
+          </Aside>
+          <Aside  className="aside-right">
             <Row>
               {filteredPokemons.map((pokemon, index) => (
-                <Col key={index}>
+                <Grid key={index}>
                   <div className="pokemon-container">
                     <Button 
                       className={`pokemon-heart ${favorites.includes(pokemon.name) ? "favorite" : ""}`}
@@ -217,13 +240,15 @@ const Home = () => {
                       national={pokemon.national_number}
                       types={pokemon.type}
                       image={pokemon.sprites.large}
-                      />
-                    </div>
-                  </Col>
+                    />
+                  </div>
+                </Grid>
               ))}
             </Row>
-          </Container>
+          </Aside>
+        </Container>
         </ContainerFluid>
+     
 
     </div>
   );

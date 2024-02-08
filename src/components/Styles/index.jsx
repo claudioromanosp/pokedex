@@ -23,6 +23,7 @@ export const ModalDiv = styled.div`
 
 export const CardImage = styled.div`
   width: 100%;
+  height: auto;
   background-color: ${(props) => colors.light_gray};
 `;
 
@@ -43,6 +44,7 @@ export const ButtonTag = styled.div`
   cursor: pointer;
   border: 1px solid ${(props) => colors.red};
 `;
+
 
 
 
