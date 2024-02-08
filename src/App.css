@@ -112,6 +112,9 @@ body{
     float: left;
     border: 1px solid blue;
 }
+.header-main{
+    background-color: #E2350D;
+}
 
 @media(min-width: 900px){
     .aside-left{
