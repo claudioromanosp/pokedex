@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { breakpoint } from "../Variables";
+import { breakpoint,colors } from "../Variables";
 
 const AsideLeftRight = styled.div`
   width: 100%;
@@ -19,24 +19,28 @@ const AsideLeftRight = styled.div`
     }
     &.aside-right {
       width: 80%;
+      height: 600px;
+      
+      scrollbar-color: ${(props) => `${colors.red} ${colors.white}` };
+      overflow: hidden;
+      overflow-y: scroll;
     }
     section {
       margin-bottom: 60px;
     }
   }
-
-  @media (min-width: 1100px) {
-    &.aside-left,
-    &.aside-right {
-      width: 20%;
+  @media (min-width: ${(props) => breakpoint.md}px) {
+    &.aside-left {
+      width: 16%;
     }
-
     &.aside-right {
-      width: 80%;
+      width: 83%;
+    }
+    section {
+      margin-bottom: 60px;
     }
   }
 `;
-
 
 function Aside({  children, className }) {
   return (

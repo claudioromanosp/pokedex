@@ -10,7 +10,7 @@ export const GridS = styled.div`
   }
   @media (min-width: ${(props) => breakpoint.md}px) {
     grid-template-columns: repeat(4, 1fr);
-    gap: 30px;
+    gap: 25px;
   }
   @media (min-width: ${(props) => breakpoint.lg}px) {
     grid-template-columns: repeat(5, 1fr);
