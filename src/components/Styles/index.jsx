@@ -45,6 +45,19 @@ export const ButtonTag = styled.div`
   border: 1px solid ${(props) => colors.red};
 `;
 
+export const SearchInput = styled.input`
+  padding: 15px;
+  border: none;
+  width: 100%;
+  border-radius: 40px;
+  margin-bottom: 20px;
+  background-color: ${(props) => colors.light_gray};
+  @media (min-width: ${(props) => breakpoint.sm}px) {
+    width: 380px;
+  }
+`;
+
+
 
 
 

@@ -97,3 +97,28 @@
 .filtered-tag:after{
     content: "X";
 }
+
+.filters{
+    padding: 40px 0;
+}
+/* icone de busca */
+svg.svg-inline--fa.fa-magnifying-glass{
+    color: #e2350d;
+    position: absolute;
+    right: 18px;
+    margin-top: 13px;
+}
+@media(min-width: 769px){
+    svg.svg-inline--fa.fa-magnifying-glass{
+        margin-left: -32px;
+        right: auto;
+    }
+    .filters .select-filter{
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: flex-end;
+    }
+}
+@media(min-width: 769px){
+}

@@ -1,24 +1,21 @@
 import React, { useEffect, useState } from "react";
-import "./styles.css";
 import api from "../../services/api";
 import PokemonList from "../../components/PokemonList";
-import Input from "../../components/Input";
 import Select from "../../components/Select";
 import Button from "../../components/Button";
 import Loading from "../../components/Loading";
 import Heart from "../../assets/images/empty-heart.png";
 import HeartFavorite from "../../assets/images/red-heart.png";
-import {  ButtonTag } from "../../components/Styles";
+import {  ButtonTag, SearchInput, SelectInput } from "../../components/Styles";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart, faToggleOn, faToggleOff } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faToggleOn, faToggleOff,faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import ContainerFluid from "../../components/Layout/ContainerFluid";
 import Container from "../../components/Layout/Container";
 import Row from "../../components/Layout/Row";
 import Col from "../../components/Layout/Col";
 import Grid from "../../components/Layout/Grid";
 import Aside from "../../components/Layout/Aside";
-import Logo from "../../components/Logo";
-import Header from "../../components/Header";
+import "./styles.css";
 
 
 const Home = () => {
@@ -129,67 +126,38 @@ const Home = () => {
   return (
     <div>
       {loading && <Loading />}
-      <section>
-        <header>
-          <div class="container-fluid">
-            <div class="container">
-              <div class="row">
-                <div class="col">logo</div>
-                <div class="col">coluna do meio</div>
-                <div class="col">sair</div>
-              </div>
-            </div>
-          </div>
-        </header>
-      </section>
-
-      <section>
-          <div class="container-fluid">
-            <div class="container">
-              <div class="row">
-                <div class="col">coluna busca</div>
-                <div class="col">select</div>
-                <div class="col">select</div>
-              </div>
-            </div>
-          </div>
-      </section>
-
-     
-      <div>
-        
-      </div>
-      <div>
-        
-      </div>
-
-      
-
+    
+    <section className="filters">   
       <ContainerFluid>
         <Container>
           <Row>
-            <Col>
-              <Input
-                type="text"
-                placeholder="Pesquisar por nome ou número nacional"
-                value={searchTerm}
-                onChange={handleSearchChange}
-              />
+              <Col className="col-50" id="col-left">
+                <div className="search">
+                <SearchInput
+                  type="text"
+                  placeholder="Pesquisar por nome ou número nacional"
+                  value={searchTerm}
+                  onChange={handleSearchChange}
+                  />
+                  <FontAwesomeIcon icon={faMagnifyingGlass} />
+                </div>
             </Col>
-            <Col></Col>
-            <Col></Col>
-            <Col>
-              <Select
-                id="sortOrder"
-                value={sortOrder}
-                options={options}
-                onChange={handleSortChange}
-                className="select"
-              />
+              <Col className="col-50" id="col-right">
+                <div className="select-filter">
+                  <label>Ordenar por: </label>
+                  <Select
+                    id="sortOrder"
+                    value={sortOrder}
+                    options={options}
+                    onChange={handleSortChange}
+                    className="select"
+                    />
+                </div>
             </Col>
             </Row>
         </Container>
      </ContainerFluid> 
+    </section>
       
       <ContainerFluid>
         <Container>
@@ -225,9 +193,9 @@ const Home = () => {
           </Aside>
           <Aside  className="aside-right">
             <Row>
+                <Grid>
               {filteredPokemons.map((pokemon, index) => (
-                <Grid key={index}>
-                  <div className="pokemon-container">
+                  <div className="pokemon-container" key={index}>
                     <Button 
                       className={`pokemon-heart ${favorites.includes(pokemon.name) ? "favorite" : ""}`}
                       onClick={() => onHeartClick(pokemon.name)}
@@ -242,8 +210,8 @@ const Home = () => {
                       image={pokemon.sprites.large}
                     />
                   </div>
-                </Grid>
               ))}
+                </Grid>
             </Row>
           </Aside>
         </Container>
