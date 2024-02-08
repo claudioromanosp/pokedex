@@ -13,18 +13,23 @@ body{
 }
 label{
     margin-right: 15px;
+    margin-bottom: 15px;
+    display: block;
 }
 
 input:focus,input:focus-visible{
     outline: none;
 }
-@media(min-width: 992px){
-    #col-right,#col-left{
-        width: 50%;
+@media(min-width: 769px){
+    label{
+        margin-bottom:0;
     }
 }
 
 @media(min-width: 992px){
+    #col-right,#col-left{
+        width: 50%;
+    }
     #col-right{
         float: right;
         width: auto;

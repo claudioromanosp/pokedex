@@ -190,14 +190,14 @@ const Home = () => {
               {showFavoritesOnly ?
                 <FontAwesomeIcon 
                 icon={faToggleOn} 
-                style={{ "color": "#E2350D", "--fa-secondary-color": "#E2350D" }}
+                style={{ "color": "#E2350D" }}
                 size="2x" 
                 onClick={handleClearFavoritesFilter} 
                 />
                 :
                 <FontAwesomeIcon 
                 icon={faToggleOff} 
-                style={{ "color": "#828282", "--fa-secondary-color": "#828282" }}  
+                style={{ "color": "#828282" }}  
                 size="2x" 
                 onClick={handleShowFavorites} 
                 />
