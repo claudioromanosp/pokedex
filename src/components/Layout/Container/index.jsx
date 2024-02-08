@@ -5,6 +5,7 @@ export const ContainerMain = styled.div`
   width: 100%;
   margin: 0 auto;
   max-width: 1200px;
+  padding: 20px;
 `;
 
 function Container({  children }) {

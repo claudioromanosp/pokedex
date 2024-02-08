@@ -8,7 +8,7 @@ import Heart from "../../assets/images/empty-heart.png";
 import HeartFavorite from "../../assets/images/red-heart.png";
 import {  ButtonTag, SearchInput, SubtitleH3 } from "../../components/Styles";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart, faToggleOn, faToggleOff,faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faToggleOn, faToggleOff, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import ContainerFluid from "../../components/Layout/ContainerFluid";
 import Container from "../../components/Layout/Container";
 import Row from "../../components/Layout/Row";
@@ -132,8 +132,8 @@ const Home = () => {
 
   return (
     <div>
+  
       {loading && <Loading />}
-    
     <section className="filters">   
       <ContainerFluid>
         <Container>
@@ -227,8 +227,6 @@ const Home = () => {
           </Aside>
         </Container>
         </ContainerFluid>
-     
-
     </div>
   );
 };

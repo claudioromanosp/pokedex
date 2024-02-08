@@ -1,9 +1,8 @@
 .header-main{
     background-color: #E2350D;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    padding: 10px 20px;
+    float: left;
+    margin-bottom: 40px;
+    box-shadow: 0 2px 6px #ccc;
 }
 
 .header-main h2{
@@ -13,6 +12,7 @@
 
 .header-main ul{
     list-style: none;
+    float: right;
 }
 
 .header-main .logo-header .logo{
@@ -23,16 +23,12 @@
 .header-main .logo-header  h2{
     text-align: center;
 }
-.login {
-    width: 60px;
-    position: absolute;
-    right: 10px;
-}
-
 .list-inline {
     display: flex;
     list-style: none;
     padding: 0;
+    gap: 0px;
+    align-items: center;
 }
 
 .list-inline li {
@@ -43,6 +39,9 @@ svg.svg-inline--fa.fa-right-from-bracket{
 }
 
 @media(min-width: 769px){
+    .header-main{
+        padding-bottom: 15px;
+    }
    .header-main .logo-header {
       float: left;
       width: 160px;
@@ -57,12 +56,12 @@ svg.svg-inline--fa.fa-right-from-bracket{
         right: auto;
         width: 110px;
     }
+    .list-inline{
+        gap: 15px;
+    }
     .list-inline li {
         margin-left: 0px;
     }
-    .list-inline {
-        display: flex;
-        align-items: center;
-    }
+
 }
 

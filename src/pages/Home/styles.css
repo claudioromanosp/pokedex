@@ -6,14 +6,11 @@
     content: " ✓ ";
 }
 
-.filters{
-    padding: 40px 0;
-}
 /* icone de busca */
 svg.svg-inline--fa.fa-magnifying-glass{
     color: #e2350d;
     position: absolute;
-    right: 18px;
+    right: 40px;
     margin-top: 13px;
 }
 @media(min-width: 769px){
@@ -27,6 +24,4 @@ svg.svg-inline--fa.fa-magnifying-glass{
         align-items: center;
         justify-content: flex-end;
     }
-}
-@media(min-width: 769px){
 }
