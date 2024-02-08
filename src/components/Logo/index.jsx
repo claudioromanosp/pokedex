@@ -1,9 +1,9 @@
 import logo from "./pokeball.svg";
 
-function Logo() {
+const Logo = ({className}) => {
   return (
       <div className="logo">
-        <img src={logo} alt="loading"  id="loading" />
+        <img src={logo} alt="pokedex"  id="pokedex" className={`img-responsive ${className}`} />
       </div>
   );
 }
