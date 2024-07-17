@@ -6,7 +6,6 @@ export const Column = styled.div`
   margin: 0 auto;
   @media (min-width: ${(props) => breakpoint.sm}px) {
     width: 50%;
-    display: inline-flex;
   }
   @media (min-width: ${(props) => breakpoint.md}px) {
     width: 33.333333%;
@@ -18,7 +17,7 @@ export const Column = styled.div`
 
 function Col({ children, className, id }) {
   return (
-    <Column id={id } className={`col col-sm col-md col-lg col-xlg ${className}`}>
+    <Column id={id } className={`col  ${className}`}>
       {children}
     </Column>
   );

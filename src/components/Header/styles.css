@@ -7,7 +7,6 @@
 
 .header-main h2{
     color: #fff;
-    margin-left: 15px;
 }
 
 .header-main ul{
@@ -34,28 +33,14 @@
 .list-inline li {
     margin-left: 10px;
 }
-svg.svg-inline--fa.fa-right-from-bracket{
-    color: #fff;
-}
-
 @media(min-width: 769px){
     .header-main{
         padding-bottom: 15px;
     }
    .header-main .logo-header {
-      float: left;
       width: 160px;
     }
-    .header-main .logo-header  h2{
-        text-align: left;
-        margin-left:-5px;
-    }
-   .header-main .login {
-        float: right;
-        position: relative;
-        right: auto;
-        width: 110px;
-    }
+
     .list-inline{
         gap: 15px;
     }

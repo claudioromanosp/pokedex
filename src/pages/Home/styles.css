@@ -13,6 +13,9 @@ svg.svg-inline--fa.fa-magnifying-glass{
     right: 40px;
     margin-top: 13px;
 }
+.aside-right{
+    margin-top: 40px;
+}
 @media(min-width: 769px){
     svg.svg-inline--fa.fa-magnifying-glass{
         margin-left: -32px;
